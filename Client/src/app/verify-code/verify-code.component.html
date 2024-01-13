@@ -1,0 +1,18 @@
+<div class="center">
+  <h1 *ngIf="src.length > 0"> Scan the QR</h1>
+  <img *ngIf="src.length>0" [src]=src alt="qr code" width="200" height="200">
+
+  <h1 *ngIf="src.length <=0 "> Enter Code</h1>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter Code</mat-label>
+    <input matInput [(ngModel)]="code" type="text" autocomplete="off">
+  </mat-form-field>
+  <br>
+  <!-- <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter Username</mat-label>
+    <input matInput [(ngModel)]="username" type="text">
+  </mat-form-field>
+  <br> -->
+  <button mat-stroked-button color="primary" (click)="onverify()"> Submit</button>
+</div>

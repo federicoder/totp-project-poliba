@@ -1,0 +1,10 @@
+<div class="center">
+
+  <h1>
+    Hello {{userName}}
+  </h1>
+
+  <button mat-raised-button (click)="logout()" color="warn" *ngIf="userName.length > 0"> Logout</button>
+  <!-- <button mat-raised-button color="primary" [routerLink]="['/login']" *ngIf="userName.length <= 0">
+    Login</button> -->
+</div>
