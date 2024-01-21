@@ -26,10 +26,10 @@ public class TotpManager {
         QrData data = new QrData.Builder()
                 .label("Two-factor-auth-test")
                 .secret(secret)
-                .issuer("zoho app")
+                .issuer("Test Poliba TOTP")
                 .algorithm(HashingAlgorithm.SHA1)
-                .digits(6)
-                .period(30)
+                .digits(8)
+                .period(60)
                 .build();
 
         System.out.println(data.getDigits());
@@ -49,8 +49,9 @@ public class TotpManager {
 
     public boolean verifyCode(String code, String secret) {
         TimeProvider timeProvider = new SystemTimeProvider();
-        CodeGenerator codeGenerator = new DefaultCodeGenerator();
+        CodeGenerator codeGenerator = new DefaultCodeGenerator(HashingAlgorithm.SHA1, 8);
         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
-        return verifier.isValidCode(secret, code);
+        boolean result = verifier.isValidCode(secret, code);
+        return result;
     }
 }
