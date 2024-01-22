@@ -1,5 +1,5 @@
 <div class="center">
-  <app-otp-config *ngIf="isParametrized && !parametrizationComplete"></app-otp-config>
+  <app-otpconfig *ngIf="isParametrized && !parametrizationComplete"></app-otpconfig>
   <div *ngIf="parametrizationComplete">
     <h1 *ngIf="src.length > 0">Scan the QR</h1>
     <img *ngIf="src.length > 0" [src]="src" alt="qr code" width="200" height="200" />

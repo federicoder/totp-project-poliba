@@ -3,13 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-otpconfig',
   templateUrl: './otpconfig.component.html',
-  styleUrls: ['./otpconfig.component.css']
+  styleUrls: ['./otpconfig.component.css'],
 })
 export class OtpconfigComponent implements OnInit {
+  algorithm = '';
+  digits = '';
+  period = '';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  getValueOfAlgorithm($event: any) {
+    this.algorithm = $event;
   }
-
+  setValues() {}
 }

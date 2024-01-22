@@ -1,1 +1,22 @@
-<p>otpconfig works!</p>
+<mat-form-field>
+  <mat-label>Select Algorithm</mat-label>
+  <mat-select (selectionChange)="getValueOfAlgorithm($event)" disableRipple>
+    <mat-option value="SHA-1">SHA 1</mat-option>
+    <mat-option value="SHA-256">SHA 256</mat-option>
+    <mat-option value="SHA-512">SHA 512</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<form class="digits-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Insert Number of digits:</mat-label>
+    <input matInput placeholder="Ex. 6" value="6" />
+  </mat-form-field>
+</form>
+<form class="period-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Insert period:</mat-label>
+    <input matInput placeholder="Ex. 60" value="60" />
+  </mat-form-field>
+</form>
+<button mat-raised-button color="primary" (click)="setValues()">Imposta</button>

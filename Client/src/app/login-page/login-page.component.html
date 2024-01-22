@@ -10,7 +10,7 @@
     <input matInput [(ngModel)]="user.password" type="password" autocomplete="off" />
   </mat-form-field>
   <br />
-  <mat-checkbox (toggle)="setParameterOn()">Parametrizza</mat-checkbox>
+  <mat-checkbox (change)="setParameterOn()">Parametrizza</mat-checkbox>
   <br />
   <br />
   <button mat-raised-button color="primary" (click)="loginUser()">Submit</button>
