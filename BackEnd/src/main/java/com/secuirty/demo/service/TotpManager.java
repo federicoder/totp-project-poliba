@@ -13,23 +13,62 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import static dev.samstevens.totp.util.Utils.getDataUriForImage;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class TotpManager {
+    Integer numberOfDigits;
+    HashingAlgorithm typeOfAlgorithm;
+    Integer period;
 
     public String generateSecret() {
         SecretGenerator generator = new DefaultSecretGenerator();
         return generator.generate();
     }
 
-    public String getUriForImage(String secret) {
+    public String getUriForImage(String secret, Optional<String> nrOfDigits, Optional<String> typeAlgorithm,
+            Optional<String> periodOfOTP) {
+        numberOfDigits = 6;
+        typeOfAlgorithm = HashingAlgorithm.SHA1;
+        period = 60;
+        if (nrOfDigits.isPresent()) {
+            numberOfDigits = Integer.parseInt(nrOfDigits.get());
+        } else {
+            throw new IllegalArgumentException("Argomento nrOfDigits opzionale mancante o invalido");
+        }
+        if (typeAlgorithm.isPresent()) {
+            switch (typeAlgorithm.get()) {
+                case ("SHA-1"):
+                typeOfAlgorithm = HashingAlgorithm.SHA1;
+                    break;
+               case ("SHA-256"):
+                typeOfAlgorithm = HashingAlgorithm.SHA256;
+                    break;
+               case ("SHA-512"):
+                typeOfAlgorithm = HashingAlgorithm.SHA512;
+                    break;            
+                default:
+                    typeOfAlgorithm = HashingAlgorithm.SHA1;
+                    break;
+            }
+
+        } else {
+            throw new IllegalArgumentException("Argomento typeAlgorithm opzionale mancante o invalido");
+        }
+        if (periodOfOTP.isPresent()) {
+            period = Integer.parseInt(periodOfOTP.get());
+        } else {
+            throw new IllegalArgumentException("Argomento periodOfOTP opzionale mancante o invalido");
+
+        }
         QrData data = new QrData.Builder()
                 .label("Two-factor-auth-test")
                 .secret(secret)
                 .issuer("Test Poliba TOTP")
-                .algorithm(HashingAlgorithm.SHA1)
-                .digits(8)
-                .period(60)
+                .algorithm(typeOfAlgorithm)
+                .digits(numberOfDigits)
+                .period(period)
                 .build();
 
         System.out.println(data.getDigits());

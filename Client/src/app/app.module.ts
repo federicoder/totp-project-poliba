@@ -14,6 +14,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HttpRequestInterceptor } from './http-request-interceptor';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { VerifyCodeComponent } from './verify-code/verify-code.component';
+import { OtpconfigComponent } from './otpconfig/otpconfig.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
     LoginPageComponent,
     SignUpComponent,
     LandingPageComponent,
-    VerifyCodeComponent
+    VerifyCodeComponent,
+    OtpconfigComponent
   ],
   imports: [
     BrowserModule,
