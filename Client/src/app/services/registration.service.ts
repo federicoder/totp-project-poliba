@@ -50,7 +50,8 @@ export class RegistrationService {
 
   public getQRCode(optionalData?: { digits: string; typeOfAlgorithm: string; period: string }): Promise<any> {
     return new Promise((res, rej) => {
-      this.http.get(`http://localhost:9000/2fa`, { params: optionalData, responseType: 'text' }).subscribe(
+      // , responseType: 'text'
+      this.http.get(`http://localhost:9000/2fa`, { params: optionalData}).subscribe(
         data => {
           console.log('qr code' + data);
           res(data);

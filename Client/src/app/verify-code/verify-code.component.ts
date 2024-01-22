@@ -45,7 +45,7 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
   async setParameters($event: any) {
     this.data = {
       digits: $event.digits,
-      typeOfAlgorithm: $event.typeOfAlgorithm,
+      typeOfAlgorithm: $event.algorithm,
       period: $event.period,
     };
     this.parametrizationComplete = true;
@@ -59,4 +59,5 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
       this.router.navigate(['/login']);
     }
   }
+
 }

@@ -34,8 +34,6 @@ public class TotpManager {
         period = 60;
         if (nrOfDigits.isPresent()) {
             numberOfDigits = Integer.parseInt(nrOfDigits.get());
-        } else {
-            throw new IllegalArgumentException("Argomento nrOfDigits opzionale mancante o invalido");
         }
         if (typeAlgorithm.isPresent()) {
             switch (typeAlgorithm.get()) {
@@ -53,15 +51,10 @@ public class TotpManager {
                     break;
             }
 
-        } else {
-            throw new IllegalArgumentException("Argomento typeAlgorithm opzionale mancante o invalido");
         }
         if (periodOfOTP.isPresent()) {
             period = Integer.parseInt(periodOfOTP.get());
-        } else {
-            throw new IllegalArgumentException("Argomento periodOfOTP opzionale mancante o invalido");
-
-        }
+        } 
         QrData data = new QrData.Builder()
                 .label("Two-factor-auth-test")
                 .secret(secret)
