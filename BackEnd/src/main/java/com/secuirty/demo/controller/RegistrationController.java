@@ -79,9 +79,9 @@ public class RegistrationController {
 
 	@GetMapping("/2fa")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public ResponseEntity<?> getQRCode(@RequestParam(name = "nrOfDigits", required = false) Optional<String> nrOfDigits,
-			@RequestParam(name = "typeAlgorithm", required = false) Optional<String> typeAlgorithm,
-			@RequestParam(name = "periodOfOTP", required = false) Optional<String> periodOfOTP) throws Exception {
+	public ResponseEntity<?> getQRCode(@RequestParam(name = "digits", required = false) Optional<String> nrOfDigits,
+			@RequestParam(name = "algorithm", required = false) Optional<String> typeAlgorithm,
+			@RequestParam(name = "period", required = false) Optional<String> periodOfOTP) throws Exception {
 		int userId = this.filter.getUserID();
 		// String username = this.filter.getUserName();
 		Optional<User> let = this.service.FetchUserName(userId);
@@ -93,7 +93,7 @@ public class RegistrationController {
 
 			System.out.println(location);
 			System.out.println(" Log in " + otp.getUriForImage(user.secret, nrOfDigits, typeAlgorithm, periodOfOTP));
-			return ResponseEntity.created(location).body(otp.getUriForImage(user.secret, null, null, null));
+			return ResponseEntity.created(location).body(otp.getUriForImage(user.secret, nrOfDigits, typeAlgorithm, periodOfOTP));
 		} else {
 			return ResponseEntity.created(location).body(null);
 		}

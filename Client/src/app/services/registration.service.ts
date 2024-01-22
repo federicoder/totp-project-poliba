@@ -48,17 +48,10 @@ export class RegistrationService {
     });
   }
 
-  public getQRCode(optionalData?: { digits: string; typeOfAlgorithm: string; period: string }): Promise<any> {
-    return new Promise((res, rej) => {
+  public getQRCode(optionalData?: { digits: string; algorithm: string; period: string }) {
+    // return new Promise((res, rej) => {
       // , responseType: 'text'
-      this.http.get(`http://localhost:9000/2fa`, { params: optionalData}).subscribe(
-        data => {
-          console.log('qr code' + data);
-          res(data);
-        },
-        data => rej(data.ok)
-      );
-    });
+      return this.http.get(`http://localhost:9000/2fa`, { params: optionalData, responseType: 'text'});
   }
 
   public verifyQRCode(code: String, username: string): Promise<any> {

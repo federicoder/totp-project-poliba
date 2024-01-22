@@ -10,15 +10,15 @@ import { UtilService } from '../util.service';
 })
 export class VerifyCodeComponent implements OnInit, OnChanges {
   constructor(private service: RegistrationService, private router: Router, private utilService: UtilService) {}
-  src: string = '';
+  @Input() src: string = '';
   code: string = '';
   username: string = '';
   @Input() isParametrized = true;
   parametrizationComplete = false;
 
-  data: { digits: string; typeOfAlgorithm: string; period: string } = {
+  data: { digits: string; algorithm: string; period: string } = {
     digits: '',
-    typeOfAlgorithm: '',
+    algorithm: '',
     period: '',
   };
 
@@ -29,7 +29,7 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
       if (this.isParametrized) {
       } else {
         this.parametrizationComplete = true;
-        this.src = await this.service.getQRCode();
+         this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
       }
     });
   }
@@ -40,16 +40,22 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
           this.isParametrized = changes.isParametrized.currentValue;
         }
       }
+      if (changes.src) {
+        if (changes.src.currentValue) {
+          this.src = changes.src.currentValue;
+        }
+      }
     }
   }
   async setParameters($event: any) {
     this.data = {
       digits: $event.digits,
-      typeOfAlgorithm: $event.algorithm,
+      algorithm: $event.algorithm,
       period: $event.period,
     };
+    this.service.getQRCode(this.data).subscribe(res => this.src = res.toString())
     this.parametrizationComplete = true;
-    this.src = await this.service.getQRCode(this.data);
+
   }
   async onverify() {
     const res = await this.service.verifyQRCode(this.code, this.username);
