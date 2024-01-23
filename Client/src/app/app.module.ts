@@ -18,9 +18,10 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { OtpconfigComponent } from './otpconfig/otpconfig.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, SignUpComponent, LandingPageComponent, VerifyCodeComponent, OtpconfigComponent],
+  declarations: [AppComponent, LoginPageComponent, SignUpComponent, LandingPageComponent, VerifyCodeComponent, OtpconfigComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
