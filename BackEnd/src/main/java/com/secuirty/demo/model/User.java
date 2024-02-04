@@ -76,4 +76,8 @@ public class User {
 	public String getAlgorithm() {
 		return algorithm;
 	}
+	public boolean isFirstime() {
+		return firstime;
+	}
+	
 }

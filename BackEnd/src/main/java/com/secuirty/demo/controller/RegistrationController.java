@@ -163,6 +163,13 @@ public class RegistrationController {
 
 	}
 
+	@GetMapping("/firstime")
+	@CrossOrigin(origins = "http://localhost:4200")
+	public boolean getFirstTime(@RequestParam(name = "email") String email) {
+		User user = this.service.FetchUserByEmailId(email);
+		return user.isFirstime();
+
+	}
 	public Boolean setCookie(HttpServletResponse response, Integer userId) {
 		// create a cookie
 		Cookie cookie = new Cookie("token", new JWTService().generateToken(userId));
