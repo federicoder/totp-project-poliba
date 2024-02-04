@@ -165,7 +165,7 @@ public class RegistrationController {
 
 	@GetMapping("/firstime")
 	@CrossOrigin(origins = "http://localhost:4200")
-	public boolean getFirstTime(@RequestParam(name = "email") String email) {
+	public boolean getFirstTime(@RequestParam(name = "email") String email,  HttpServletResponse response) throws Exception {
 		User user = this.service.FetchUserByEmailId(email);
 		return user.isFirstime();
 

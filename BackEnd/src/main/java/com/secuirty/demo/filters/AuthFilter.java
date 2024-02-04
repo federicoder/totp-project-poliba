@@ -76,7 +76,7 @@ public class AuthFilter implements Filter {
 	        	  String path = req.getRequestURI();
 	              System.out.println("Is authenticated : " + authenticated + " 2 factor " + twoFa);
 	
-	              ArrayList<String> excludeList = new ArrayList<>(Arrays.asList("/login", "/new", "/2fa", "/verify"));
+	              ArrayList<String> excludeList = new ArrayList<>(Arrays.asList("/login", "/new", "/2fa", "/verify", "/firstime"));
 	            		  
 	              if (excludeList.contains(path) || (authenticated && twoFa)) {
 	            	  filterchain.doFilter(request, response);
