@@ -6,14 +6,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./otpconfig.component.css'],
 })
 export class OtpconfigComponent implements OnInit {
-  algorithm = '';
-  digits = '';
-  period = '';
+  algorithm:string = '';
+  digits: string = '';
+  period: string = '';
   @Output() dataToSendEmitter = new EventEmitter<{digits: string,algorithm:string, period:string }>();
   constructor() {}
 
   ngOnInit(): void {}
-  setValueOfAlgorithm($event: any) {
+  /* setValueOfAlgorithm($event: any) {
     this.algorithm = $event.value;
   }
   setValueOfPeriod($event: any) {
@@ -21,7 +21,7 @@ export class OtpconfigComponent implements OnInit {
   }
   setValueOfDigits($event: any) {
     this.digits = $event.data;
-  }
+  } */
   setValues() {
     this.dataToSendEmitter.emit({digits: this.digits, algorithm: this.algorithm, period: this.period});
   }

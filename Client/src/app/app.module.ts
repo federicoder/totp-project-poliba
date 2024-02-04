@@ -18,6 +18,9 @@ import { VerifyCodeComponent } from './verify-code/verify-code.component';
 import { OtpconfigComponent } from './otpconfig/otpconfig.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -32,6 +35,9 @@ import { HomeComponent } from './home/home.component';
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDividerModule,
     FormsModule,
   ],
   providers: [

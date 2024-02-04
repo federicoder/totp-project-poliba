@@ -1,12 +1,12 @@
 <div class="center">
 
-  <h1> Sign up here </h1>
+  <h1>Registration Page</h1>
+  
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="user.username" type="text" autocomplete="off">
   </mat-form-field>
   <br>
-
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Email</mat-label>
     <input matInput [(ngModel)]="user.mail" type="mail" autocomplete="off">
@@ -18,9 +18,7 @@
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="signUp()"> Submit </button>
-  <br>
-  <p>
-    or
-  </p>
-  <button mat-raised-button color="accent" [routerLink]="['/login']"> Log in </button>
+  <mat-divider style="width: 100%; margin: 2rem;" [inset]="true"></mat-divider>
+  <p> If you are already registered, go to the Log In Page </p>
+  <button mat-raised-button color="accent" style="margin-bottom: 2rem;" [routerLink]="['/login']">Log In Page</button>
 </div>

@@ -1,21 +1,21 @@
 <div class="center">
-  <h1>Login here</h1>
+
+  <h1>Log In Page</h1>
+
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Email</mat-label>
     <input matInput [(ngModel)]="user.mail" type="mail" autocomplete="off" />
   </mat-form-field>
-  <br />
+  <br>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Password</mat-label>
     <input matInput [(ngModel)]="user.password" type="password" autocomplete="off" />
   </mat-form-field>
-  <br />
+  <br>
   <mat-checkbox (change)="setParameterOn()">Parametrizza</mat-checkbox>
-  <br />
-  <br />
+  <br>
   <button mat-raised-button color="primary" (click)="loginUser()">Submit</button>
-
-  <br />
-  <p>or</p>
-  <button mat-raised-button color="accent" [routerLink]="['/signup']">Sign up</button>
+  <mat-divider style="width: 100%; margin: 2rem;" [inset]="true"></mat-divider>
+  <p>If you are not already registered, go to the Sign Up Page</p>
+  <button mat-raised-button color="accent" [routerLink]="['/signup']">Sign Up Page</button>
 </div>

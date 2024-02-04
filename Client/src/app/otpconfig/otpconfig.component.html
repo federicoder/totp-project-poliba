@@ -1,22 +1,21 @@
 <mat-form-field>
   <mat-label>Select Algorithm</mat-label>
-  <mat-select (selectionChange)="setValueOfAlgorithm($event)" disableRipple>
+  <mat-select [(ngModel)]="algorithm" disableRipple>
     <mat-option value="SHA-1">SHA 1</mat-option>
     <mat-option value="SHA-256">SHA 256</mat-option>
     <mat-option value="SHA-512">SHA 512</mat-option>
   </mat-select>
 </mat-form-field>
-
 <form class="digits-form">
   <mat-form-field class="example-full-width">
     <mat-label>Insert Number of digits:</mat-label>
-    <input type="text" name="digitsInput" (input)="setValueOfDigits($event)" [value]="digits"  matInput placeholder="Ex. 6"  />
+    <input type="text" name="digitsInput" [(ngModel)]="digits"  matInput placeholder="Ex. 6"  />
   </mat-form-field>
 </form>
 <form class="period-form">
   <mat-form-field class="example-full-width">
     <mat-label>Insert period:</mat-label>
-    <input type="text" name="periodInput" (input)="setValueOfPeriod($event)" [value]="period" matInput placeholder="Ex. 60"  />
+    <input type="text" name="periodInput" [(ngModel)]="period" matInput placeholder="Ex. 60"  />
   </mat-form-field>
 </form>
 <button mat-raised-button color="primary" (click)="setValues()">Imposta</button>
