@@ -7,6 +7,6 @@ CREATE TABLE user (
     secret varchar(255) NOT NULL,
     firstime boolean,
     digits int,
-    alghorithm varc(255)
+    algorithm varc(255)
     PRIMARY KEY (id)
 );
