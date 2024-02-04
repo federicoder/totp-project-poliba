@@ -16,10 +16,9 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
   @Input() isParametrized = true;
   parametrizationComplete = false;
 
-  data: { digits: string; algorithm: string; period: string } = {
+  data: { digits: string; algorithm: string } = {
     digits: '',
-    algorithm: '',
-    period: '',
+    algorithm: ''
   };
 
   ngOnInit() {
@@ -68,14 +67,13 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
     this.data = {
       digits: $event.digits,
       algorithm: $event.algorithm,
-      period: $event.period,
     };
     this.service.getQRCode(this.data).subscribe(res => this.src = res.toString())
     this.parametrizationComplete = true;
 
   }
   async onverify() {
-    const res = await this.service.verifyQRCode(this.code, this.username);
+    const res = await this.service.verifyQRCode(this.code, this.username, this.data);
     if (res == 'true') {
       this.router.navigate(['/home']);
     } else {

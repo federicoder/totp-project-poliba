@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.secuirty.demo.requests.VerifyCodeRequest;
 import com.secuirty.demo.service.TotpManager;
+import com.secuirty.demo.service.dto.Parameter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -84,6 +86,7 @@ public class RegistrationController {
 			@RequestParam(name = "period", required = false) Optional<String> periodOfOTP) throws Exception {
 		int userId = this.filter.getUserID();
 		// String username = this.filter.getUserName();
+		// findById su utente
 		Optional<User> let = this.service.FetchUserName(userId);
 		User user = let.get();
 		URI location = ServletUriComponentsBuilder
@@ -98,14 +101,14 @@ public class RegistrationController {
 			return ResponseEntity.created(location).body(null);
 		}
 	}
-
+	// chiamata utilizzata per verificare che il codice qr immesso sia valido:
 	@PostMapping("/verify")
 	@CrossOrigin(origins = "http://localhost:4200")
 	public String verify(@RequestBody VerifyCodeRequest verifyCodeRequest, HttpServletResponse response) {
 		System.out.println(" get code " + verifyCodeRequest.getCode());
 		User user = this.service.findByUsername(this.filter.getUserName());
-
-		if (!otp.verifyCode(verifyCodeRequest.getCode(), user.secret)) {
+		// in questo punto viene verificato che il codice sia valido:
+		if (!otp.verifyCode(verifyCodeRequest.getCode(), user.secret,verifyCodeRequest.getData())) {
 			return "false";
 		} else {
 			this.filter.setTwoFa(true);

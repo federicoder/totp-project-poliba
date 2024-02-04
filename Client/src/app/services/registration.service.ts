@@ -48,15 +48,15 @@ export class RegistrationService {
     });
   }
 
-  public getQRCode(optionalData?: { digits: string; algorithm: string; period: string }) {
+  public getQRCode(optionalData?: { digits: string; algorithm: string }) {
     // return new Promise((res, rej) => {
       // , responseType: 'text'
       return this.http.get(`http://localhost:9000/2fa`, { params: optionalData, responseType: 'text'});
   }
 
-  public verifyQRCode(code: String, username: string): Promise<any> {
+  public verifyQRCode(code: String, username: string, data: Object): Promise<any> {
     return new Promise((res, rej) => {
-      this.http.post('http://localhost:9000/verify', { code: code, username: username }, { responseType: 'text' }).subscribe(
+      this.http.post('http://localhost:9000/verify', { code: code, username: username, data: data}, { responseType: 'text' }).subscribe(
         data => {
           console.log(data);
           res(data);
