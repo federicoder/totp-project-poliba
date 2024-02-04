@@ -32,6 +32,7 @@ export class LoginPageComponent implements OnInit {
         this.utilService.getParametrizationSub.next(false);
       }
 
+      localStorage.setItem("mail", this.user.mail);
       this.router.navigate(['/2fa'], { queryParams: { parametrize: this.parametrize } });
     }
   }

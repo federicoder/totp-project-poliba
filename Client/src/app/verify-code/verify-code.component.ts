@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 import { UtilService } from '../util.service';
+import { User } from '../models/User';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-verify-code',
@@ -9,10 +11,11 @@ import { UtilService } from '../util.service';
   styleUrls: ['./verify-code.component.css'],
 })
 export class VerifyCodeComponent implements OnInit, OnChanges {
-  constructor(private service: RegistrationService, private router: Router,private actRouter: ActivatedRoute, private utilService: UtilService) {}
+  constructor(private service: RegistrationService, private router: Router,private actRouter: ActivatedRoute, private utilService: UtilService, private userService: UserService) {}
   @Input() src: string = '';
   code: string = '';
   username: string = '';
+  mail: string = '';
   @Input() isParametrized = true;
   parametrizationComplete = false;
 
@@ -20,6 +23,8 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
     digits: '',
     algorithm: ''
   };
+
+  isFirstTime: boolean = true;
 
   ngOnInit() {
     let parametrize: any = this.actRouter.snapshot.queryParamMap.get('parametrize');
@@ -48,7 +53,13 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
     //      this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
     //   }
     // });
+
+    this.mail = localStorage.getItem('mail')!;
+    this.userService.isFirstTime({email: this.mail}).subscribe(data=>{
+      this.parametrizationComplete = !data;
+    })
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       if (changes.isParametrized) {

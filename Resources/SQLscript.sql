@@ -6,5 +6,7 @@ CREATE TABLE user (
     mail varchar(255) NOT NULL,
     secret varchar(255) NOT NULL,
     firstime boolean,
+    digits int,
+    alghorithm varc(255)
     PRIMARY KEY (id)
 );
