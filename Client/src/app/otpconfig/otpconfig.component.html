@@ -1,15 +1,22 @@
-<mat-form-field>
-  <mat-label>Select Algorithm</mat-label>
-  <mat-select [(ngModel)]="algorithm" disableRipple>
-    <mat-option value="SHA-1">SHA 1</mat-option>
-    <mat-option value="SHA-256">SHA 256</mat-option>
-    <mat-option value="SHA-512">SHA 512</mat-option>
-  </mat-select>
-</mat-form-field>
-<form class="digits-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Insert Number of digits:</mat-label>
-    <input type="text" name="digitsInput" [(ngModel)]="digits"  matInput placeholder="Ex. 6"  />
+<div class="center">
+  <h1>Set Parameters</h1>
+  <mat-form-field>
+    <mat-label>Select Algorithm</mat-label>
+    <mat-select [(ngModel)]="algorithm" disableRipple>
+      <mat-option value="SHA-1">SHA 1</mat-option>
+      <mat-option value="SHA-256">SHA 256</mat-option>
+      <mat-option value="SHA-512">SHA 512</mat-option>
+    </mat-select>
   </mat-form-field>
-</form>
-<button mat-raised-button color="primary" (click)="setValues()">Imposta</button>
+  <br>
+  <mat-form-field>
+    <mat-label>Select Number of Digits</mat-label>
+    <mat-select [(ngModel)]="digits" disableRipple>
+      <mat-option value="6">6</mat-option>
+      <mat-option value="7">7</mat-option>
+      <mat-option value="8">8</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button  mat-raised-button color="primary" (click)="setValues()">Set Up</button>
+</div>

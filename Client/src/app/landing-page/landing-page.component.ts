@@ -21,7 +21,7 @@ export class LandingPageComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    console.log(this.userName)
+    console.log('User ' + this.userName + ' logged in successfully!')
   }
 
   async logout() {

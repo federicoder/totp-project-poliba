@@ -37,7 +37,7 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
     if (this.isParametrized) {
     } else {
       this.parametrizationComplete = true;
-       this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
+      this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
     }
     // this.utilService.getParametrizationObs().subscribe(async (res: boolean) => {
     //   this.isParametrized = res;

@@ -12,9 +12,15 @@
     <input matInput [(ngModel)]="user.password" type="password" autocomplete="off" />
   </mat-form-field>
   <br>
-  <mat-checkbox (change)="setParameterOn()">Parametrizza</mat-checkbox>
+  <mat-checkbox (change)="setParameterOn()">Set Parameters</mat-checkbox>
   <br>
   <button mat-raised-button color="primary" (click)="loginUser()">Submit</button>
+  <mat-divider style="width: 100%; margin: 2rem;" [inset]="true"></mat-divider>
+  Default Parameters:
+  <ul>
+    <li>Algotithm: SHA-1</li>
+    <li>Digits: 6</li>
+  </ul>
   <mat-divider style="width: 100%; margin: 2rem;" [inset]="true"></mat-divider>
   <p>If you are not already registered, go to the Sign Up Page</p>
   <button mat-raised-button color="accent" [routerLink]="['/signup']">Sign Up Page</button>

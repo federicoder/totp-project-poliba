@@ -17,15 +17,13 @@ export class LoginPageComponent implements OnInit {
   constructor(private service: RegistrationService, private router: Router, private utilService: UtilService) {}
 
   ngOnInit(): void {
-    console.log('hello');
+    
   }
   setParameterOn() {
     this.parametrize = !this.parametrize;
   }
 
   async loginUser() {
-    console.log('i am here login');
-    console.log(this.user);
     const data = await this.service.loginUserFromRemote(this.user);
     if (data) {
       if (this.parametrize) {
