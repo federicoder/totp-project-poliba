@@ -17,7 +17,7 @@
   margin-bottom: 20px;
 
 }
-.login-button{
-  margin-left: 0.25rem;
-
+.custom-button{
+  padding: 0.25rem;
+  margin: 0.25rem;
 }
