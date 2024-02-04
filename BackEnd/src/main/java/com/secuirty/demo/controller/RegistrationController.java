@@ -93,7 +93,6 @@ public class RegistrationController {
 				.fromCurrentContextPath().path("/users/{username}")
 				.buildAndExpand(userName).toUri();
 		if (user.firstime) {
-
 			System.out.println(location);
 			System.out.println(" Log in " + otp.getUriForImage(user.secret, nrOfDigits, typeAlgorithm, periodOfOTP));
 			return ResponseEntity.created(location).body(otp.getUriForImage(user.secret, nrOfDigits, typeAlgorithm, periodOfOTP));
@@ -108,14 +107,30 @@ public class RegistrationController {
 		System.out.println(" get code " + verifyCodeRequest.getCode());
 		User user = this.service.findByUsername(this.filter.getUserName());
 		// in questo punto viene verificato che il codice sia valido:
-		if (!otp.verifyCode(verifyCodeRequest.getCode(), user.secret,verifyCodeRequest.getData())) {
-			return "false";
-		} else {
-			this.filter.setTwoFa(true);
-			user.firstime = false;
-			this.service.updateUser(user);
-			return "true";
+		if(!user.firstime){
+			Parameter parameter = new Parameter();
+			parameter.setNumberOfCode(user.getDigits());
+			parameter.setAlgorithm(user.getAlgorithm());
+			if (!otp.verifyCode(verifyCodeRequest.getCode(), user.secret, parameter)) {
+				return "false";
+			} else {
+				this.filter.setTwoFa(true);
+				return "true";
+			}
 		}
+		else{
+			if (!otp.verifyCode(verifyCodeRequest.getCode(), user.secret,verifyCodeRequest.getData())) {
+				return "false";
+			} else {
+				this.filter.setTwoFa(true);
+				user.firstime = false;
+				user.setDigits(verifyCodeRequest.getCode().length());
+				user.setAlgorithm(verifyCodeRequest.getData().getAlgorithm().toString());
+				this.service.updateUser(user);
+				return "true";
+			}
+		}
+	
 
 	}
 

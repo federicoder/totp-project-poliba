@@ -20,6 +20,8 @@ public class User {
 	private String username ;
 	private String password ;
 	private String mail;
+	private int digits = 6;
+	private String algorithm = "SHA-1";
 	public boolean firstime= true;
 	public int getId() {
 		return id;
@@ -62,5 +64,16 @@ public class User {
 	}
 	public void setSecret(String secret) { this.secret = secret;}
 	
-	
+	public void setDigits(int digits) {
+		this.digits = digits;
+	}
+	public void setAlgorithm(String algorithm) {
+		this.algorithm = algorithm;
+	}
+	public int getDigits() {
+		return digits;
+	}
+	public String getAlgorithm() {
+		return algorithm;
+	}
 }
