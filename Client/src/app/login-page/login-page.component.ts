@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { User } from '../models/User';
 import { RegistrationService } from '../services/registration.service';
 import { UtilService } from '../util.service';
@@ -33,7 +33,8 @@ export class LoginPageComponent implements OnInit {
       } else {
         this.utilService.getParametrizationSub.next(false);
       }
-      this.router.navigate(['/2fa']);
+
+      this.router.navigate(['/2fa'], { queryParams: { parametrize: this.parametrize } });
     }
   }
 }

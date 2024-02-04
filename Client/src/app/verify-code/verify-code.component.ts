@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 import { UtilService } from '../util.service';
 
@@ -9,7 +9,7 @@ import { UtilService } from '../util.service';
   styleUrls: ['./verify-code.component.css'],
 })
 export class VerifyCodeComponent implements OnInit, OnChanges {
-  constructor(private service: RegistrationService, private router: Router, private utilService: UtilService) {}
+  constructor(private service: RegistrationService, private router: Router,private actRouter: ActivatedRoute, private utilService: UtilService) {}
   @Input() src: string = '';
   code: string = '';
   username: string = '';
@@ -23,15 +23,32 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
   };
 
   ngOnInit() {
-    this.utilService.getParametrizationObs().subscribe(async (res: boolean) => {
-      this.isParametrized = res;
+    let parametrize: any = this.actRouter.snapshot.queryParamMap.get('parametrize');
 
-      if (this.isParametrized) {
-      } else {
-        this.parametrizationComplete = true;
-         this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
-      }
-    });
+    if(parametrize === "true"){
+      parametrize = true;
+    }
+    else{
+      parametrize = false;
+    }
+    this.isParametrized = parametrize;
+      // Recupera il parametro booleano dalla query
+
+  // Converte il valore in booleano (se necessario)
+    if (this.isParametrized) {
+    } else {
+      this.parametrizationComplete = true;
+       this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
+    }
+    // this.utilService.getParametrizationObs().subscribe(async (res: boolean) => {
+    //   this.isParametrized = res;
+
+    //   if (this.isParametrized) {
+    //   } else {
+    //     this.parametrizationComplete = true;
+    //      this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
+    //   }
+    // });
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
