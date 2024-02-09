@@ -30,8 +30,7 @@ public class TotpManager {
         return generator.generate();
     }
 
-    public String getUriForImage(String secret, Optional<String> nrOfDigits, Optional<String> typeAlgorithm,
-            Optional<String> periodOfOTP) {
+    public String getUriForImage(String secret, Optional<String> nrOfDigits, Optional<String> typeAlgorithm) {
         // default value of parameters (T, x, A):
         numberOfDigits = 6;
         typeOfAlgorithm = HashingAlgorithm.SHA1;
@@ -57,9 +56,7 @@ public class TotpManager {
             }
 
         }
-        if (periodOfOTP.isPresent()) {
-            period = Integer.parseInt(periodOfOTP.get());
-        }
+      
         // dati per costrutire il qr:
         QrData data = new QrData.Builder()
                 .label("Two-factor-auth-test")
