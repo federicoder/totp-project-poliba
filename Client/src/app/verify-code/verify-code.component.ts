@@ -42,24 +42,20 @@ export class VerifyCodeComponent implements OnInit, OnChanges {
     if (this.isParametrized) {
     } else {
       this.parametrizationComplete = true;
-      this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
+      this.service.getQRCode().subscribe(res =>
+         this.src  = res.toString()
+         );
     }
-    // this.utilService.getParametrizationObs().subscribe(async (res: boolean) => {
-    //   this.isParametrized = res;
-
-    //   if (this.isParametrized) {
-    //   } else {
-    //     this.parametrizationComplete = true;
-    //      this.service.getQRCode().subscribe(res =>  this.src  = res.toString());
-    //   }
-    // });
 
     this.mail = localStorage.getItem('mail')!;
     this.userService.isFirstTime({email: this.mail}).subscribe(data=>{
-      this.parametrizationComplete = !data;
+      if(this.isParametrized){
+        this.parametrizationComplete = !data;
+      }
+
     })
   }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       if (changes.isParametrized) {
